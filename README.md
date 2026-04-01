@@ -1,6 +1,6 @@
 # E-Commerce Backend System (Spring Boot)
 
-Production-ready e-commerce backend with JWT auth, product management, cart, order creation, and Stripe checkout.
+Production-ready e-commerce backend with JWT auth, product management, cart, order creation, and Paypal checkout.
 
 ## Tech Stack
 
@@ -8,7 +8,7 @@ Production-ready e-commerce backend with JWT auth, product management, cart, ord
 - Spring Security + JWT
 - Spring Data JPA (Hibernate)
 - H2 (default local) / MySQL (production)
-- Stripe Java SDK
+- Paypal Java SDK(sandbox)
 - Swagger OpenAPI
 - JUnit + Mockito
 
@@ -18,7 +18,30 @@ Production-ready e-commerce backend with JWT auth, product management, cart, ord
 - Products: CRUD APIs (`/products`)
 - Cart: add/get/remove user cart items (`/cart`)
 - Orders: create from cart and list user orders (`/orders`)
-- Payments: Stripe checkout URL generation (`/payment/checkout`)
+- Payments: Paypal checkout URL generation (`/payment/checkout`)
+- ## Sample APIs
+
+### Auth
+POST /auth/register  
+POST /auth/login  
+
+### Products
+GET /products  
+POST /products (ADMIN)  
+PUT /products/{id} (ADMIN)  
+DELETE /products/{id} (ADMIN)  
+
+### Cart
+GET /cart  
+POST /cart/add  
+DELETE /cart/remove/{productId}  
+
+### Orders
+POST /orders  
+GET /orders  
+
+### Payments
+POST /payment/checkout
 
 ## Run
 
@@ -41,4 +64,4 @@ Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 
 - Default DB is in-memory H2 for quick local execution.
 - For MySQL, switch datasource properties in `application.properties`.
-- Stripe key in properties is a placeholder; replace with a real test key.
+-PayPal client ID and secret should be configured in application.properties (Sandbox credentials).
